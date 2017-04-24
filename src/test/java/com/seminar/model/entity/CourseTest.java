@@ -60,6 +60,20 @@ public class CourseTest {
 		
 		assertThat(validCourse.isValid(), is(true));
 	}
+
+	@Test
+	public void notValidCourse() throws Exception {
+		HashMap<String, String> params = new HashMap<String, String>(){{
+			put("id", "12sonoUnId");
+			put("name", "course");
+			put("start", "26.03.2017");
+			put("location", "somewhere");
+			put("totalSeats", "15");
+		}};
+		EntityModel validCourse = new EntityModel(Course.rules(), params);
+		
+		assertThat(validCourse.isValid(), is(false));
+	}
 	
 	@Test
 	public void courseNameStartLocationTotalSeatsAreMandatory() throws Exception {
